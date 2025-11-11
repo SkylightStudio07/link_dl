@@ -34,6 +34,7 @@ class ClassificationTrainer:
     num_trains = 0
 
     for train_batch in self.train_data_loader:
+      # input_train.shape: torch.Size([2048, 3, 32, 32]),  target_train.shape: torch.Size([2048])
       input_train, target_train = train_batch
       input_train = input_train.to(device=self.device)
       target_train = target_train.to(device=self.device)

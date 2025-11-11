@@ -76,7 +76,7 @@ def get_alexnet_model():
         Pass the input through the net.
         """
         x = self.cnn(x)
-        x = x.view(-1, 192 * 3 * 3)  # reduce the dimensions for linear layer input
+        x = x.view(-1, 192 * 3 * 3)  # flatten the dimensions for linear layer input
         return self.fcn(x)
 
   my_model = AlexNet(in_channels=3, n_output=10)
@@ -136,5 +136,5 @@ if __name__ == "__main__":
   parser = get_parser()
   args = parser.parse_args()
   main(args)
-  # python _01_code/_11_cnn/a_mnist_train_cnn.py --wandb -b 2048 -r 1e-3 -v 10
-  # python _01_code/_11_cnn/a_mnist_train_cnn.py --no-wandb -b 2048 -r 1e-3 -v 10
+  # python _01_code/_11_cnn_architectures/a_mnist_train_cnn.py --wandb -b 2048 -r 1e-3 -v 10
+  # python _01_code/_11_cnn_architectures/a_mnist_train_cnn.py --no-wandb -b 2048 -r 1e-3 -v 10
