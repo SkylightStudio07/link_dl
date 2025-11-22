@@ -8,18 +8,19 @@ from torch.utils.data import DataLoader, random_split
 from torchvision import datasets
 from torchvision.transforms import transforms
 
-BASE_PATH = str(Path(__file__).resolve().parent.parent.parent)  # BASE_PATH: /Users/yhhan/git/link_dl
+from pathlib import Path
+BASE_PATH = "/content"  # 코랩의 기본 경로로 고정
 print(BASE_PATH)
 
 import sys
 
 sys.path.append(BASE_PATH)
 
-from _01_code._99_common_utils.utils import get_num_cpu_cores, is_linux, is_windows
+from utils import get_num_cpu_cores, is_linux, is_windows
 
 
 def get_fashion_mnist_data():
-    data_path = os.path.join(BASE_PATH, "_00_data", "j_fashion_mnist")
+    data_path = "./data"
 
     f_mnist_train = datasets.FashionMNIST(data_path, train=True, download=True, transform=transforms.ToTensor())
     f_mnist_train, f_mnist_validation = random_split(f_mnist_train, [55_000, 5_000])
@@ -44,14 +45,14 @@ def get_fashion_mnist_data():
 
     f_mnist_transforms = nn.Sequential(
         transforms.ConvertImageDtype(torch.float),
-        transforms.Normalize(mean=0.0, std=0.1),
+        transforms.Normalize(mean=0.2860, std=0.3530),
     )
 
     return train_data_loader, validation_data_loader, f_mnist_transforms
 
 
 def get_fashion_mnist_test_data():
-    data_path = os.path.join(BASE_PATH, "_00_data", "j_fashion_mnist")
+    data_path = os.path.join(BASE_PATH, "j_fashion_mnist")
 
     f_mnist_test_images = datasets.FashionMNIST(data_path, train=False, download=True)
     f_mnist_test = datasets.FashionMNIST(data_path, train=False, download=True, transform=transforms.ToTensor())
@@ -63,7 +64,7 @@ def get_fashion_mnist_test_data():
 
     f_mnist_transforms = nn.Sequential(
         transforms.ConvertImageDtype(torch.float),
-        transforms.Normalize(mean=0.0, std=0.1),
+        transforms.Normalize(mean=0.2860, std=0.3530),
     )
 
     return f_mnist_test_images, test_data_loader, f_mnist_transforms
