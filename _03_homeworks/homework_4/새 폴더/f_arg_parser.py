@@ -59,18 +59,6 @@ def get_parser():
     default=0.0,
     help="LSTM에 적용할 Dropout 비율 (float, default: 0.0). lstm_layers가 2 이상일 때만 적용됨."
   )
-
-  parser.add_argument(
-  "--model",
-  type=str,
-  default="lstm",
-  choices=["lstm", "attn"],
-  help="사용할 모델 종류: lstm 또는 attn(Self-Attention/TransformerEncoder)"
-)
-  parser.add_argument("--d_model", type=int, default=64, help="Attention 내부 임베딩 차원")
-  parser.add_argument("--n_heads", type=int, default=4, help="Multi-head attention head 수")
-  parser.add_argument("--attn_layers", type=int, default=2, help="TransformerEncoder layer 수")
-  parser.add_argument("--ff_dim", type=int, default=128, help="Transformer FFN hidden dim")
-  parser.add_argument("--attn_dropout", type=float, default=0.1, help="Attention dropout")
+  
 
   return parser
